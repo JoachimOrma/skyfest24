@@ -7,9 +7,9 @@
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
 
     <!-- CSS Files -->
-    <link rel="stylesheet" href="static/assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="static/assets/css/plugins.min.css" />
-    <link rel="stylesheet" href="static/assets/css/admin.min.css" />
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/plugins.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/admin.min.css' %}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
 
@@ -83,13 +83,13 @@
   </head>
   <body>
     <div class="container">   
-        <div class="card border mt-2">
+        <div class="card border mt-4">
             <div class="card-header text-center bg-secondary text-light border">
                 <img src="{% static 'img/logo.png' %}" alt="skyfest-logo" width="75">
-                <span style="font-size: 1.5rem;" id="title">Register and Get Your Invite.</span>
+                <span style="font-size: 20px;" id="title">Register and Get Your Invite.</span>
             </div>
             <div class="card-body px-md-4 py-md-2">
-                <form method="post" class="p-3">
+                <form method="post" class="py-3">
                     {% csrf_token %}
                     <label class="fw-bolder mb-2">Name: <span class="text-danger">*</span></label>
                     <div class="row mb-3">
@@ -150,18 +150,18 @@
         </div>
     </div>
     <!--   Core JS Files   -->
-    <script src="static/assets/js/core/jquery-3.7.1.min.js"></script>
-    <script src="static/assets/js/core/popper.min.js"></script>
-    <script src="static/assets/js/core/bootstrap.min.js"></script>
+    <script src="{% static 'assets/js/core/jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'assets/js/core/popper.min.js' %}"></script>
+    <script src="{% static 'assets/js/core/bootstrap.min.js' %}"></script>
     <!-- Bootstrap Notify -->
-    <script src="static/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+    <script src="{% static 'assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js' %}"></script>
 
     <!-- Sweet Alert -->
-    <script src="static/assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+    <script src="{% static 'assets/js/plugin/sweetalert/sweetalert.min.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 
     <!--Page JS -->
-    <script src="static/assets/js/admin.min.js"></script>
+    <script src="{% static 'assets/js/admin.min.js' %}"></script>
 
     <script>
        
@@ -287,7 +287,7 @@
                             const InviteHtml = `
                                 <p id="download-invite"></p>
                                 <div class="d-flex justify-content-center align-items-center">         
-                                    <div class="text-center p-3 pt-0">
+                                    <div class="text-center p-2 pt-0">
                                         <p id="download-invite"> </p>
                                         <img id="mergedImage" src="${data.attendee.merged_image_url}" alt="Merged Invite" width="100%">
                                         <div class="d-flex justify-content-center">
