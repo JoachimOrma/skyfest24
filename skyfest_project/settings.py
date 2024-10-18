@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-=h&$_1-+wkeb0_t-#d57%_5iw6=y%en=+^4lc-cigcux_j&zoy
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["skyfest24.onrender.com"]
 
 
 # Application definition
