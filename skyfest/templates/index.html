@@ -10,10 +10,47 @@
     <link rel="stylesheet" href="static/assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="static/assets/css/plugins.min.css" />
     <link rel="stylesheet" href="static/assets/css/admin.min.css" />
-    <link rel="stylesheet" href="static/assets/fontawesome/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
 
     <style>
+        body, html {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            border: none;
+            background: lavenderblush;
+        }
+        .iti { width: 100%; }
+
+        @media (min-width: 312px) {
+            .card {
+                width: 97vw;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .card {
+                width: 80vw;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .card {
+                width: 50vw;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .card {
+                width: 45vw;
+            }
+        }
+  
+    </style>
+    <!-- <style>
         .hidden {
             display: none;
         }
@@ -42,85 +79,64 @@
             }
         }
   
-    </style>
+    </style> -->
   </head>
   <body>
-    <div class="container"> 
-        <div class="mb-0 mb-md-4 d-flex align-items-center">
-            <img src="{% static 'img/logo.png'%}" alt="skyfes-logo" width="55" class="m-3 me-1">
-            <span id="title" class="fs-2" style="font-family: 'Trebuchet MS', Arial, sans-serif; color: hotpink;">
-                Build The Future You Want!
-            </span>
-        </div>
-        <div class="row p-3 pt-0 align-items-center justify-content-center flex-md-row-reverse" id="intro">
-            
-            <div class="col-md-6">
-                <img src="static/img/invite.jpg" alt="invite" width="100%">
+    <div class="container">   
+        <div class="card border mt-2">
+            <div class="card-header text-center bg-secondary text-light border">
+                <img src="{% static 'img/logo.png' %}" alt="skyfest-logo" width="75">
+                <span style="font-size: 1.5rem;" id="title">Register and Get Your Invite.</span>
             </div>
-            <div class="col-md-5 col-11 mt-2 p-md-5 p-3 pb-5" style="background: lavenderblush;" id="invite-intro">
-                <p class="text-dark">SkY Fest is back!!
-                    Get ready for an unforgettable performance from Superstar Ladipoe, while Kiekie, 
-                    our host and hype queen will be bringing all the energy and moves! <br />
-                    This event is exclusively for teen girls, with free entry and bus transportation provided.
-                    Don't miss out on the fun, register to secure your spot!
-                </p>
-                <button class="btn btn-secondary col-12" id="register">Register</button>
-            </div> 
-        </div>
-
-        <div class="d-flex justify-content-center align-items-center">  
-            <div class="row p-3 pt-0" id="main" style="display: none">
-                <div class="col-md-7 self-align-center">
-                    <p class="px-3"> Sign up for SKY Fest! Fill out the form below to secure your spot!</p>
-                    <form method="post" class="p-3 pt-0">
-                        {% csrf_token %}
-                        <label class="fw-bolder mb-2">Name: <span class="text-danger">*</span></label>
-                        <div class="row mb-3">
-                            <div class="col-6">
-                                <input type="text" name="first_name" id="first_name" class="form-control" placeholder="First Name" required/>
-                                <span class="error text-danger" style="display: none;" id="firstnameError">This field is required.</span>
-                            </div>
-                            <div class="col-6">
-                                <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Last Name" required/>
-                                <span class="error text-danger" style="display: none;" id="lastnameError">This field is required.</span>
-                            </div>
+            <div class="card-body px-md-4 py-md-2">
+                <form method="post" class="p-3">
+                    {% csrf_token %}
+                    <label class="fw-bolder mb-2">Name: <span class="text-danger">*</span></label>
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <input type="text" name="first_name" id="first_name" class="form-control" placeholder="First Name" required/>
+                            <span class="error text-danger" style="display: none;" id="firstnameError">This field is required.</span>
                         </div>
-                        <div class="row mb-4">
-                            <div class="col-12 mb-2">
-                                <label class="fw-bolder mb-2">Phone Number: <span class="text-danger">*</span></label>
-                                <input type="tel" name="attendee_phone" id="attendee_phone" class="form-control" required/>
-                                <span class="error text-danger" style="display: none;" id="attendeePhoneError">This field is required.</span>
-                            </div>
-                            <div class="col-12">
-                                <label class="fw-bolder mb-2">Parent's Phone Number: <span class="text-danger">*</span></label>
-                                <input type="tel" name="parent_phone" id="parent_phone" class="form-control" required/>
-                                <span class="error text-danger" style="display: none;" id="parentPhoneError">This field is required.</span>
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label fw-bolder mb-2">Address: <span class="text-danger">*</span></label>
-                                <textarea name="address" id="address" cols="45" rows="2" class="form-control" required></textarea>
-                                <span class="error text-danger" style="display: none;" id="addressError">This field is required.</span>
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label fw-bolder mb-2">Pickup Location: <span class="text-danger">*</span></label>
-                                <select name="pickup_location" id="pickup_location" class="form-select" required>
-                                    <option>City</option>
-                                    <option value="Agege">Agege - Agege Studium</option>
-                                    <option value="Surulere">Surulere - Studium Barracks</option>
-                                    <option value="Ojota">Ojota - Total Filing Station</option>
-                                    <option value="Sabo">Yaba - Sabo Roundabout</option>
-                                    <option value="Oshodi">Oshodi - Arena Second Gate</option>
-                                </select>
-                                <span class="error text-danger" style="display: none;" id="pickupLocationError">This field is required.</span>
-                            </div>
+                        <div class="col-6">
+                            <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Last Name" required/>
+                            <span class="error text-danger" style="display: none;" id="lastnameError">This field is required.</span>
                         </div>
-                        <div class="d-flex justify-content-end">
-                            <button type="submit" id="submit" class="btn btn-secondary col-12">Submit</button>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-12 mb-3">
+                            <label class="fw-bolder mb-2">Phone Number: <span class="text-danger">*</span></label>
+                            <input type="tel" name="attendee_phone" id="attendee_phone" class="form-control" required/>
+                            <span class="error text-danger" style="display: none;" id="attendeePhoneError">This field is required.</span>
                         </div>
-                    </form>
-                </div>
-            </div>        
-        </div> 
+                        <div class="col-12 mb-3">
+                            <label class="fw-bolder mb-2">Parent's Phone Number: <span class="text-danger">*</span></label>
+                            <input type="tel" name="parent_phone" id="parent_phone" class="form-control" required/>
+                            <span class="error text-danger" style="display: none;" id="parentPhoneError">This field is required.</span>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label class="form-label fw-bolder">Address: <span class="text-danger">*</span></label>
+                            <textarea name="address" id="address" cols="45" rows="2" class="form-control" required></textarea>
+                            <span class="error text-danger" style="display: none;" id="addressError">This field is required.</span>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label class="form-label fw-bolder">Pickup Location: <span class="text-danger">*</span></label>
+                            <select name="pickup_location" id="pickup_location" class="form-select" required>
+                                <option>City</option>
+                                <option value="Agege">Agege - Agege Studium</option>
+                                <option value="Surulere">Surulere - Studium Barracks</option>
+                                <option value="Ojota">Ojota - Total Filing Station</option>
+                                <option value="Sabo">Yaba - Sabo Roundabout</option>
+                                <option value="Oshodi">Oshodi - Arena Second Gate</option>
+                            </select>
+                            <span class="error text-danger" style="display: none;" id="pickupLocationError">This field is required.</span>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" id="submit" class="btn btn-secondary col-12">REGISTER</button>
+                    </div>
+                </form>
+            </div>
+        </div>      
 
         <div class="d-flex justify-content-center align-items-center">         
 
@@ -148,12 +164,7 @@
     <script src="static/assets/js/admin.min.js"></script>
 
     <script>
-        $('#register').click(function(){
-            document.getElementById('intro').style.display = 'none';
-            document.getElementById('main').style.display = 'block';
-            document.getElementById('title').innerText = 'Register and get an Invite!';
-        })
-        
+       
         const attendeePhoneInputField = document.querySelector("#attendee_phone");
         const attendeePhoneInput = window.intlTelInput(attendeePhoneInputField, {
             initialCountry: "ng", 
@@ -273,17 +284,29 @@
                             });
                                         
                             const mergedImage = document.getElementById('mergedImage');
+                            const InviteHtml = `
+                                <p id="download-invite"></p>
+                                <div class="d-flex justify-content-center align-items-center">         
+                                    <div class="text-center p-3 pt-0">
+                                        <p id="download-invite"> </p>
+                                        <img id="mergedImage" src="${data.attendee.merged_image_url}" alt="Merged Invite" width="100%">
+                                        <div class="d-flex justify-content-center">
+                                            <button type="button" class="btn btn-warning mt-3 col-12 col-md-auto" onclick="downloadImage()">Download Invite</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            ` 
                             setTimeout(function(){
-                                mergedImage.src = data.attendee.merged_image_url;
-                                document.getElementById('invite').style.display = 'block';
-                                document.getElementById('main').style.display = 'none';
+                                document.querySelector('.card-body').innerHTML = "";
+                                document.querySelector('.card-body').innerHTML = InviteHtml;
+                                
                                 document.getElementById('title').innerText = 'Your Personalized Invite!';
-                                $('#download-invite').html(`Thank you for registering <b> ${data.attendee.first_name}!,</b><br />Download and keep your invite handy, it will be your pass to the event!`);
+                                $('#download-invite').html(`Thank you for registering <b> ${data.attendee.first_name}!,</b> Download and keep your invite handy, it will be your pass to the event!`);
                             
                             }, 2000);
 
                             } 
-                        $('#submit').text('Submit');
+                        $('#submit').text('REGISTER');
                     },
                 });
             }
