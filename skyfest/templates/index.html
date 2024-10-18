@@ -1,0 +1,307 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title> SkyFest | Registration </title>
+    <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="static/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="static/assets/css/plugins.min.css" />
+    <link rel="stylesheet" href="static/assets/css/admin.min.css" />
+    <link rel="stylesheet" href="static/assets/fontawesome/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+
+    <style>
+        body, html {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            border: none;
+            background: #fff;
+        }
+        .hidden {
+            display: none;
+        }
+
+        .iti { width: 100%; }
+
+        @media (min-width: 992px) {
+            #mergedImage {
+                width: 50%;
+            }
+            #invite-intro {
+                height: 438px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            #mergedImage {
+                width: 50%;
+            }
+            #invite-intro {
+                height: 438px;
+            }
+        }
+  
+    </style>
+  </head>
+  <body>
+    <div class="container">
+                
+
+        <div class="row p-3 align-items-center flex-md-row-reverse" id="intro">
+            <h1 class="display-4 text-center pt-2 pb-md-5" style="font-family: cursive; color: hotpink;">SKY FEST!!!</h1>
+            
+            <div class="col-md-6">
+                <img src="static/img/invite.jpg" alt="invite" width="100%">
+            </div>
+            <div class="col-md-5 p-md-5 p-3" style="background: lavenderblush;" id="invite-intro">
+                <p class="text-dark">SkY Fest is back, and this time we're taking the fun to Lagos! <br />
+                    Get ready for an unforgettable performance from Superstar Ladipoe, while Kiekie, 
+                    our host and hype queen will be bringing all the energy and moves! <br />
+                    This event is exclusively for teen girls, with free entry and bus transportation provided.
+                    Don't miss out on the fun, register below to secure your spot!
+                </p>
+                <button class="btn btn-secondary col-12" id="register">Register</button>
+            </div> 
+        </div>
+
+        <div class="row p-3 justify-content-center" id="main" style="display: none">
+            <div class="col-md-8">
+                <h3 class="text-center text-secondary" style="font-family: cursive;">Register and get an Invite!</h3>
+                <p> Sign up for SKY Fest!  Don't forget to download the invite after registeration. It'll be your pass to the event!</p>
+                <form method="post" class="p-3">
+                    {% csrf_token %}
+                    <label class="fw-bolder mb-2">Name: <span class="text-danger">*</span></label>
+                    <div class="row mb-2">
+                        <div class="col-6">
+                            <input type="text" name="first_name" id="first_name" class="form-control" placeholder="First Name" required/>
+                            <span class="error text-danger" style="display: none;" id="firstnameError">This field is required.</span>
+                        </div>
+                        <div class="col-6">
+                            <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Last Name" required/>
+                            <span class="error text-danger" style="display: none;" id="lastnameError">This field is required.</span>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-12 mb-2">
+                            <label class="fw-bolder mb-2">Phone Number: <span class="text-danger">*</span></label>
+                            <input type="tel" name="attendee_phone" id="attendee_phone" class="form-control" required/>
+                            <span class="error text-danger" style="display: none;" id="attendeePhoneError">This field is required.</span>
+                        </div>
+                        <div class="col-12">
+                            <label class="fw-bolder mb-2">Parent's Phone Number: <span class="text-danger">*</span></label>
+                            <input type="tel" name="parent_phone" id="parent_phone" class="form-control" required/>
+                            <span class="error text-danger" style="display: none;" id="parentPhoneError">This field is required.</span>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-12">
+                            <label class="form-label fw-bolder mb-2">Address: <span class="text-danger">*</span></label>
+                            <textarea name="address" id="address" cols="45" rows="2" class="form-control" required></textarea>
+                            <span class="error text-danger" style="display: none;" id="addressError">This field is required.</span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <label class="form-label fw-bolder mb-2">Pickup Location: <span class="text-danger">*</span></label>
+                            <select name="pickup_location" id="pickup_location" class="form-select" required>
+                                <option>City</option>
+                                <option value="Agege">Agege - Agege Studium</option>
+                                <option value="Surulere">Surulere - Studium Barracks</option>
+                                <option value="Ojota">Ojota - Total Filing Station</option>
+                                <option value="Sabo">Yaba - Sabo Roundabout</option>
+                                <option value="Oshodi">Oshodi - Arena Second Gate</option>
+                            </select>
+                            <span class="error text-danger" style="display: none;" id="pickupLocationError">This field is required.</span>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" id="submit" class="btn btn-secondary col-12">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>        
+
+        <div class="text-center p-3" id="invite" style="display: none;">
+            <h1 class="display-4 text-center py-2" style="font-family: cursive; color: hotpink;">SKY FEST!!!</h1>
+            <p id="download-invite"> </p>
+            <img id="mergedImage" src="" alt="Merged Invite" width="100%">
+            <div class="d-flex justify-content-center">
+                <button type="button" class="btn btn-secondary mt-3" onclick="downloadImage()">Download Invite</button>
+            </div>
+        </div>
+
+    </div>
+    <!--   Core JS Files   -->
+    <script src="static/assets/js/core/jquery-3.7.1.min.js"></script>
+    <script src="static/assets/js/core/popper.min.js"></script>
+    <script src="static/assets/js/core/bootstrap.min.js"></script>
+    <!-- Bootstrap Notify -->
+    <script src="static/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+
+    <!-- Sweet Alert -->
+    <script src="static/assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
+    <!--Page JS -->
+    <script src="static/assets/js/admin.min.js"></script>
+
+    <script>
+        $('#register').click(function(){
+            document.getElementById('intro').style.display = 'none';
+            document.getElementById('main').style.display = 'block';
+        })
+        
+        const attendeePhoneInputField = document.querySelector("#attendee_phone");
+        const attendeePhoneInput = window.intlTelInput(attendeePhoneInputField, {
+            initialCountry: "ng", 
+            separateDialCode: true,
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+        });
+
+        const parentPhoneInputField = document.querySelector("#parent_phone");
+        const parentPhoneInput = window.intlTelInput(parentPhoneInputField, {
+            initialCountry: "ng", 
+            separateDialCode: true,
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+        });
+
+        $('#submit').click(function(event){
+            event.preventDefault();
+
+            let isValid = true;
+            const firstname = document.getElementById('first_name').value.trim();
+            const lastname = document.getElementById('last_name').value.trim();
+            const attendeePhone = attendeePhoneInput.getNumber();
+            const parentPhone = parentPhoneInput.getNumber();
+            const address = document.getElementById('address').value.trim();
+            const pickupLocation = document.getElementById('pickup_location').value;
+
+            if (!firstname){
+                document.getElementById('firstnameError').style.display = 'inline';
+                document.getElementById('first_name').style.border = '1px solid red';
+                isValid = false;
+            }
+            else {
+                document.getElementById('firstnameError').style.display = 'none';
+                document.getElementById('first_name').style.border = '1px solid grey';
+            }
+            if (!lastname){
+                document.getElementById('lastnameError').style.display = 'inline';
+                document.getElementById('last_name').style.border = '1px solid red';
+                isValid = false;
+            }
+            else {
+                document.getElementById('lastnameError').style.display = 'none';
+                document.getElementById('last_name').style.border = '1px solid grey';
+            }
+            if (!attendeePhoneInput.isValidNumber()){
+                document.getElementById('attendeePhoneError').style.display = 'inline';
+                document.getElementById('attendee_phone').style.border = '1px solid red';
+                isValid = false;
+            }
+            else {
+                document.getElementById('attendeePhoneError').style.display = 'none';
+                document.getElementById('attendee_phone').style.border = '1px solid grey';
+            }
+            if (!parentPhoneInput.isValidNumber()){
+                document.getElementById('parentPhoneError').style.display = 'inline';
+                document.getElementById('parent_phone').style.border = '1px solid red';
+                isValid = false;
+            }
+            else {
+                document.getElementById('parentPhoneError').style.display = 'none';
+                document.getElementById('parent_phone').style.border = '1px solid grey';
+            }
+            if (address === "") {
+                document.getElementById('addressError').style.display = 'inline';
+                document.getElementById('address').style.border = '1px solid red';
+                isValid = false;
+            }
+            else {
+                document.getElementById('addressError').style.display = 'none';
+                document.getElementById('address').style.border = '1px solid grey';
+            }
+            if (pickupLocation === "City") {
+                document.getElementById('pickupLocationError').style.display = 'inline';
+                document.getElementById('pickup_location').style.border = '1px solid red';
+                isValid = false;
+            }
+            else {
+                document.getElementById('pickupLocationError').style.display = 'none';
+                document.getElementById('pickup_location').style.border = '1px solid grey';
+            }
+
+            if (isValid){
+
+                $.ajax({
+                    url: "{% url 'home' %}",
+                    type: "POST",
+                    data: {
+                        'first_name': firstname, 
+                        'last_name': lastname, 
+                        'attendee_phone': attendeePhone, 
+                        'parent_phone': parentPhone, 
+                        'address': address, 
+                        'pickup_location': pickupLocation, 
+                        'csrfmiddlewaretoken': "{{ csrf_token }}"
+                    },
+                    beforeSend: function() {
+                        $('#submit').html(`
+                            <div class='d-flex align-items-center justify-content-center'>
+                                <span class='spinner-border text-light' aria-hidden='true'></span>
+                                <span role='status' class="sr-only">processing...</span>
+                            </div>
+                        `);
+                    },
+                    success: function(data) {
+                        if (data.status == 200) {
+
+                            $.notify({
+                            icon: 'fa fa-check',
+                            title: "Success!",
+                            message: 'Your registration was successful',
+                            },{
+                                type: 'successs',
+                                placement: {
+                                    from: "top",
+                                    align: "right"
+                                },
+                                time: 2000,
+                            });
+                                        
+                            const mergedImage = document.getElementById('mergedImage');
+                            setTimeout(function(){
+                                mergedImage.src = data.attendee.merged_image_url;
+                                document.getElementById('invite').style.display = 'block';
+                                document.getElementById('main').style.display = 'none';
+                            }, 2000);
+                            
+                            $('#download-invite').html(
+                                `Thank you for registering <b> ${data.attendee.first_name},</b> download your personalized invite,
+                                and keep it handy, it'll be your pass to the event!`
+                            );
+                        } 
+                        $('#submit').text('Submit');
+                    },
+                });
+            }
+        })
+
+        function downloadImage() {
+            const imageUrl = document.getElementById('mergedImage').src;
+            const link = document.createElement('a');
+            link.href = imageUrl;
+            link.download = 'invite.jpg';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+  </body>
+</html>
