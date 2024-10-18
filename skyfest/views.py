@@ -76,7 +76,8 @@ def index(request):
             'parent_phone': parent_phone,
             'address': address,
             'picpickup_location':pickup_location,
-            'merged_image_url': f'static/merged/{first_name}_{last_name}_{qr_code}.jpg',
+            'merged_image_url': f'skyfest/static/merged/{first_name}_{last_name}_{qr_code}.jpg',
+            # 'merged_image_url': f'static/merged/{first_name}_{last_name}_{qr_code}.jpg',
         }
         return JsonResponse({'status': 200, 'attendee': attendee_details})
 
