@@ -15,6 +15,11 @@ def generate_random_string(length=9):
     return ''.join(secrets.choice(characters) for _ in range(length))
 
 def merge_qr_with_invite(invite_path, qr_code_path, output_path, qr_size=(140, 140), padding=(30, 80)):
+    
+    output_dir = os.path.dirname(output_path)
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+    
     invite_img = Image.open(invite_path)
     qr_code_img = Image.open(qr_code_path)
     qr_code_img = qr_code_img.resize(qr_size)
@@ -78,7 +83,6 @@ def index(request):
             'address': address,
             'picpickup_location':pickup_location,
             'merged_image_url': static(f'merged/{first_name}_{last_name}_{qr_code}.jpg')
-            # 'merged_image_url': f'static/merged/{first_name}_{last_name}_{qr_code}.jpg',
         }
         return JsonResponse({'status': 200, 'attendee': attendee_details})
 
