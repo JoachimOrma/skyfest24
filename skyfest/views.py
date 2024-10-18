@@ -3,7 +3,8 @@ import os, secrets, string
 import pandas as pd
 import qrcode
 from django.conf import settings
-from django.http import HttpResponse, JsonResponse
+from django.templatetags.static import static
+from django.http import JsonResponse
 from django.shortcuts import render
 from PIL import Image
 from .models import Attendee
@@ -76,7 +77,7 @@ def index(request):
             'parent_phone': parent_phone,
             'address': address,
             'picpickup_location':pickup_location,
-            'merged_image_url': f'skyfest/static/merged/{first_name}_{last_name}_{qr_code}.jpg',
+            'merged_image_url': static(f'merged/{first_name}_{last_name}_{qr_code}.jpg')
             # 'merged_image_url': f'static/merged/{first_name}_{last_name}_{qr_code}.jpg',
         }
         return JsonResponse({'status': 200, 'attendee': attendee_details})
