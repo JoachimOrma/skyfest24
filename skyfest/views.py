@@ -33,8 +33,10 @@ def index(request):
         parent_phone = request.POST.get('parent_phone')
         address = request.POST.get('address')
         pickup_location = request.POST.get('pickup_location')
+        
+        qr_code = generate_random_string(9)
 
-        qr_content = f"SkYFest Invite for {first_name} {last_name}/"
+        qr_content = f"SkYFest-Invite/{qr_code}/{first_name} {last_name}/"
         qr = qrcode.QRCode(
             version=1,
             error_correction=qrcode.constants.ERROR_CORRECT_L,
@@ -44,7 +46,6 @@ def index(request):
         qr.add_data(qr_content)
         qr.make(fit=True)
         
-        qr_code = generate_random_string(9)
         qr_image = qr.make_image()
 
         # Save the QR code image to path
