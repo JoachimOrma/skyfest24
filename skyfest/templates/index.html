@@ -24,6 +24,8 @@
             background: lavenderblush;
         }
         .iti { width: 100%; }
+        .btn-custom { background: #532263; color: #ffffff; opacity: 0.8; }
+        .btn-custom:hover, .btn-custom:active, .btn-custom:focus { background: #532263; color: #fff; opacity: 1; }
 
         @media (min-width: 312px) {
             .card {
@@ -84,7 +86,7 @@
   <body>
     <div class="container">   
         <div class="card border mt-4">
-            <div class="card-header text-center bg-secondary text-light border">
+            <div class="card-header text-center text-light border" style="background: #532263">
                 <img src="{% static 'img/logo.png' %}" alt="skyfest-logo" width="75">
                 <span style="font-size: 20px;" id="title">Register and Get Your Invite.</span>
             </div>
@@ -94,7 +96,7 @@
                     <label class="fw-bolder mb-2">Name: <span class="text-danger">*</span></label>
                     <div class="row mb-3">
                         <div class="col-6">
-                            <input type="text" name="first_name" id="first_name" class="form-control" placeholder="First Name" required/>
+                            <input type="text" name="first_name" id="first_name" class="form-control" placeholder="First Name" required autofocus />
                             <span class="error text-danger" style="display: none;" id="firstnameError">This field is required.</span>
                         </div>
                         <div class="col-6">
@@ -132,7 +134,7 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <button type="submit" id="submit" class="btn btn-secondary col-12">REGISTER</button>
+                        <button type="submit" id="submit" class="btn btn-custom col-12">REGISTER</button>
                     </div>
                 </form>
             </div>
@@ -271,14 +273,14 @@
                         if (data.status == 200) {
 
                             $.notify({
-                                icon: 'fa fa-check',
-                                title: "Success!",
+                                icon: 'fa fa-circle-check',
+                                title: "Registered",
                                 message: 'Your registration was successful',
                             },{
-                                type: 'successs',
+                                type: 'success',
                                 placement: {
                                     from: "top",
-                                    align: "right"
+                                    align: "center"
                                 },
                                 time: 2000,
                             });
@@ -310,6 +312,7 @@
                     },
                 });
             }
+
         })
 
         function downloadImage() {

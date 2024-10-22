@@ -14,7 +14,7 @@ def generate_random_string(length=9):
     characters = string.ascii_letters + string.digits
     return ''.join(secrets.choice(characters) for _ in range(length))
 
-def merge_qr_with_invite(invite_path, qr_code_path, output_path, qr_size=(140, 140), padding=(30, 80)):
+def merge_qr_with_invite(invite_path, qr_code_path, output_path, qr_size=(150, 150), padding=(30, 80)):
     
     output_dir = os.path.dirname(output_path)
     if not os.path.exists(output_dir):
@@ -42,7 +42,7 @@ def index(request):
         
         qr_code = generate_random_string(9)
 
-        qr_content = f"SkYFest-Invite/{qr_code}/{first_name} {last_name}/"
+        qr_content = f"SkYFest-Invite/{qr_code}/{first_name} {last_name}"
         qr = qrcode.QRCode(
             version=1,
             error_correction=qrcode.constants.ERROR_CORRECT_L,
@@ -64,7 +64,7 @@ def index(request):
         invite_path = os.path.join(settings.BASE_DIR, 'skyfest', 'static', 'img', 'invite.jpg')
         qr_code_path = os.path.join(settings.BASE_DIR, 'skyfest', 'static', 'qr_codes', f'{qr_code}.png')
         output_path = os.path.join(settings.BASE_DIR, 'skyfest', 'static', 'merged', f'{first_name}_{last_name}_{qr_code}.jpg')
-        merge_qr_with_invite(invite_path, qr_code_path, output_path, qr_size=(140, 140), padding=(30, 80))
+        merge_qr_with_invite(invite_path, qr_code_path, output_path, qr_size=(150, 150), padding=(30, 80))
         
         Attendee.objects.create(
             first_name=first_name,
